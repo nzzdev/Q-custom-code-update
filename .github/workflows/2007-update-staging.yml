@@ -1,8 +1,8 @@
-name: "2007-us-elections: Update data"
+name: "2007-us-elections: Update staging"
 
 on:
   schedule:
-    - cron: "0 3-21/2 * * *"
+    - cron: "0/30 3-21 * * *"
   workflow_dispatch:
 
 jobs:
@@ -26,13 +26,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - run: npm ci
-      - run: npm run update-staging
+      - run: npm run update-staging-if-changed
         env:
           Q_STAGING_SERVER: https://q-server.st-staging.nzz.ch/
           Q_STAGING_USERNAME: ${{ secrets.Q_STAGING_USERNAME }}
           Q_STAGING_PASSWORD: ${{ secrets.Q_STAGING_PASSWORD }}
-      - run: npm run update-production
-        env:
-          Q_PRODUCTION_SERVER: https://q-server.st.nzz.ch/
-          Q_PRODUCTION_USERNAME: ${{ secrets.Q_PRODUCTION_USERNAME }}
-          Q_PRODUCTION_PASSWORD: ${{ secrets.Q_PRODUCTION_PASSWORD }}
