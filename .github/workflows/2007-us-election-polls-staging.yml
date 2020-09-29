@@ -1,4 +1,4 @@
-name: "2007-us-elections: Update staging"
+name: "2007-us-election-polls: Update staging"
 
 on:
   schedule:
@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: 2007-us-elections/update-data
+        working-directory: 2007-us-election-polls/update-data
 
     steps:
       - uses: actions/checkout@v2
